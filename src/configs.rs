@@ -1,19 +1,20 @@
+use confy;
 /// Configs stores the location and m
 use std::path::PathBuf;
 use std::time::SystemTime;
 
 pub struct Configs<'a> {
-    pub path: &'a PathBuf,
+    pub path: PathBuf,
     last_modified: SystemTime,
-    configs: &'a PathBuf,
+    configs: PathBuf,
     init: bool,
 }
 
-pub fn init<'a>(path: PathBuf, configs: PathBuf) -> Configs<'a> {
+pub fn init(path: &PathBuf, configs: &PathBuf) -> Configs {
     Configs {
-        path: &path,
+        path: *path,
         last_modified: (SystemTime::now()),
-        configs: &configs,
+        configs: *configs,
         init: true,
     }
 }
